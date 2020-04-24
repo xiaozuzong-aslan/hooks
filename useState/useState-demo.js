@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import * as serviceWorker from './serviceWorker'
+import * as serviceWorker from '../serviceWorker'
 
 console.log(`
     版本1
@@ -17,8 +17,8 @@ console.log(`
         return [state,setStat]//返回新的值和 修改值的方法
     }`
     )
-let state = [] //定义一个全局变量，可接受多个参数
-let index = 0//设置索引值，用来确保每次调用App的时候数据对应的位置
+let state = [] //定义一个全局变量，可接受多个参数   
+let index = 0//设置索引值，用来确保每次调用App的时候数据对应的位置   state和index将来会放到虚拟DOM上  以保证每一个组件都有一个自己的inde和state
 const myUseState = initValue =>{//useState接受一个初始值
     let currentIndex = index //保存当前的索引，方便每次执行完后对 Index加+1 并且retrun当前的值
 
@@ -36,6 +36,14 @@ const myUseState = initValue =>{//useState接受一个初始值
 function App(){
     const [n,setN] = myUseState(0)
     const [m,setM] = myUseState(0)
+    // let m,setM  
+    // if(n%2===1){
+    //     [m,setM] = useState(0)
+    // }
+    // const [f,setF] = myUseState(0)
+    //useState 严重依赖数组的顺序 所以不能放在if里
+    //vue 3 克服了这个问题
+
     return (
         <>
             <div>{n}</div>
